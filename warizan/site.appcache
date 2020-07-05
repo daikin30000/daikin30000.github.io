@@ -1,0 +1,12 @@
+﻿CACHE MANIFEST
+# Version: 20200705_1
+
+CACHE:
+./index.html
+./Scripts/jquery.mobile-1.4.5.min.css
+./Scripts/jquery.mobile.structure-1.4.5.min.css
+./Scripts/jquery-1.12.4.min.js
+./Scripts/jquery.mobile-1.4.5.min.js
+./warizan.ico
+
+NETWORK:
