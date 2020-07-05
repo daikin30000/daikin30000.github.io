@@ -35,7 +35,7 @@
                     navigator.serviceWorker.register('./service-worker.js', { scope: '.' });
                     //マニュフェストに変更があれば、Service Worker側でリソースの再キャッシュを行う
                     if (navigator.onLine) {
-                        fetch("./site.appcache");
+                        fetch("/site.appcache");
                     }
                 });
            }
