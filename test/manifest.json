@@ -1,0 +1,20 @@
+{
+  "short_name": "Qiita の最新投稿取得アプリ V2",
+  "name": "Qiita の最新投稿取得アプリ V2",
+  "icons": [
+    {
+      "src": "icon-192-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icon-512-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#00C721F"
+}

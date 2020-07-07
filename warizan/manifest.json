@@ -1,21 +1,20 @@
 {
-name: "割り算フラッシュカード",
-short_name: "割り算",
-icons: [
-{
-src: "./warizan.ico",
-type: "image/vnd.microsoft.icon",
-sizes: "48x48"
-}
-],
-start_url: "/warizan/",
-display: "standalone",
-orientation: "landscape-primary",
-background_color: "#fff",
-theme_color: "#005000",
-description: "割り算フラッシュカードのアプリです。",
-dir: "ltr",
-lang: "ja-jp",
-related_applications: [ ],
-prefer_related_applications: false
+  "short_name": "割り算フラッシュカード",
+  "name": "割り算フラッシュカード",
+  "icons": [
+    {
+      "src": "warizan-icon-192-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "warizan-icon-512-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index3.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#00C72F"
 }

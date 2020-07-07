@@ -8,7 +8,8 @@
 	<link href="Scripts/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet" />
 	<script src="Scripts/jquery-1.12.4.min.js"></script>
 	<script src="Scripts/jquery.mobile-1.4.5.min.js"></script>
-	<link rel="apple-touch-icon-precomposed" href="warizan.ico" />
+    <link rel="apple-touch-icon-precomposed" href="warizan.ico" />
+    <link rel="manifest" href="manifest.json">
 	<script type="text/javascript">
 		//グローバル変数
 		var a = new Array(0);
@@ -35,7 +36,7 @@
                     navigator.serviceWorker.register('./service-worker.js', { scope: '.' });
                     //マニュフェストに変更があれば、Service Worker側でリソースの再キャッシュを行う
                     if (navigator.onLine) {
-                        fetch("./site.appcache");
+                        fetch("/site.appcache");
                     }
                 });
            }
@@ -152,20 +153,24 @@
                 //あまりあり と あまりなし の混合
                 //混合割合は選択
 				dan = Number($('input[name=dan]:checked').val());
-				console.log(dan);
+				//console.log(dan);
                 //例 81問の10%≒8なので指定された数字に8をかける
                 var modvalue = dan * 8;
                 //あまりなしの問題
                 level = 3;
                 makeQuestion();
                 //あまりありの割合以外を削除
-                console.log(81-modvalue-1,modvalue);
+                //console.log(81-modvalue-1,modvalue);
                 a.splice(81-modvalue-1,modvalue);
+                b.splice(81-modvalue-1,modvalue);
+                c.splice(81-modvalue-1,modvalue);
                 //あまりありの問題
                 level = 2;
                 makeQuestion();
                 //81問以降は削除
                 a.splice(81,81);
+                b.splice(81,81);
+                c.splice(81,81);
                 level = 1;
                 //ランダムに並べ替え
                 randomQuestion();
