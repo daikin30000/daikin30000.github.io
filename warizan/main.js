@@ -1,7 +1,7 @@
 "use strict";
 
 registSW();
-getPost();
+//getPost();
 
 function registSW() {
 
@@ -19,7 +19,7 @@ function registSW() {
 }
 
 function getPost() {
-
+/*
   fetch('https://qiita.com/api/v2/items')
     .then(response => {
       return response.json();
@@ -34,4 +34,5 @@ function getPost() {
     }).catch(function (error) {
       console.log(error);
     });
+*/
 }
