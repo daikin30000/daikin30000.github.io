@@ -10,6 +10,7 @@
 	<script src="Scripts/jquery.mobile-1.4.5.min.js"></script>
     <link rel="apple-touch-icon-precomposed" href="warizan.ico" />
     <link rel="manifest" href="manifest.json">
+    <script src="./main.js"></script>
 	<script type="text/javascript">
 		//グローバル変数
 		var a = new Array(0);
@@ -24,7 +25,8 @@
 		var levelStr = new Array("あまり なし", "あまり あり", "混合");
 
 		//あまりありの割合
-		var dan = 0;
+        var dan = 0;
+        /*
         $(document).ready( function(){
             console.log("serviceWorker");
             console.log('serviceWorker' in navigator);
@@ -41,7 +43,8 @@
                 });
            }
         });
-        
+        */
+       
         $(function(){
             var $isScrolling = 0 ;
             var $timeoutId ;
