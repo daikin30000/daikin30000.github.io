@@ -69,12 +69,7 @@
 			//console.log(d.toPage[0].id);
 			if (d.toPage[0].id === "game") {
 				//ゲーム画面へ移動する場合、問題を作成する
-				init();
 				makeQuestion();
-			}
-			if (d.toPage[0].id === "well-done") {
-				//ゲーム画面へ移動する場合、問題を作成する
-                $("#well-done").prepend('<div id="vw2">ゴール</div>');
 			}
 		});
 		//特定のページで初期化イベントを実行する
@@ -83,7 +78,7 @@
 			//console.log(d.prevPage[0].id);
 			if (d.toPage[0].id === "game") {
 				//ゲーム画面から離れる場合、問題や問題表示部を初期化する
-				//init();
+				init();
 			}
 		});
 		//ボタンを押したときの移動先
@@ -111,8 +106,8 @@
 				//画面
 				$("#vw").html("　");
 				$("#vw1").html("　");
-                //$("#game_main").prepend('<div id="vw2">おわり！</div>');
-				//$("#count").html("　");
+                $("#game_main").prepend('<div id="vw2">おわり！</div>');
+				$("#count").html("　");
 
 				$('body').pagecontainer('change', '#well-done', { transition: 'pop' });
 				return;
@@ -377,7 +372,6 @@
         }  
         div.game_main{
             height: 100%;
-		padding: 0px 0px 0px 0px;
         }
 	</style>
 </head>
@@ -440,7 +434,7 @@
 
 	<!-- Well done ポップアップページ -->
     <div id="well-done" data-role="page">
-        <div data-role="content">
+        <div data-role="content" id="game_main" class="game_main" onclick="">
             <div id="vw2">
                 おわり！
             </div>
