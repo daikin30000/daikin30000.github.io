@@ -236,17 +236,20 @@
 		}
 
 		function updateApp() {
-			var cache = window.applicationCache;
-			cache.addEventListener("updateready", function () {
-				if (confirm('アプリケーションの新しいバージョンが利用可能です。更新しますか？')) {
-					cache.swapCache();
-					location.reload();
-				}
-			});
-			if (navigator.onLine) {
-				cache.update();
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker
+					.register('/serviceworker.js')
+					.then(registration => {
+						// 登録成功
+						registration.onupdatefound = function() {
+							console.log('アップデートがあります！');
+							registration.update();
+						}
+					})
+					.catch(err => {
+						// 登録失敗
+				});
 			}
-		('updateready', onUpdateReady);
 		}
 
 		// 半角数字を全角数字にする場合
@@ -398,7 +401,7 @@
 		</div>
 		<div data-role="footer">
 			<div class="ui-btn-right">
-				<!--<a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">アプリ更新</a>-->
+				<a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">アプリ更新</a>
 			</div>
 			<h2>　</h2>
 		</div>

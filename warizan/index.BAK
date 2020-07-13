@@ -52,7 +52,12 @@
 			//console.log(d.toPage[0].id);
 			if (d.toPage[0].id === "game") {
 				//ゲーム画面へ移動する場合、問題を作成する
+				init();
 				makeQuestion();
+			}
+			if (d.toPage[0].id === "well-done") {
+				//ゲーム画面へ移動する場合、問題を作成する
+				$("#well-done").prepend('<div id="vw2">おわり！</div>');
 			}
 		});
 		//特定のページで初期化イベントを実行する
@@ -61,24 +66,20 @@
 			//console.log(d.prevPage[0].id);
 			if (d.toPage[0].id === "game") {
 				//ゲーム画面から離れる場合、問題や問題表示部を初期化する
-				init();
+				//init();
 			}
 		});
 		//ボタンを押したときの移動先
 		$(document).on(clickEventType, '.level1', function () {
 			level = 1;
-			$('body').pagecontainer('change', '#start', { transition: 'pop' });
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
 		});
 		$(document).on(clickEventType, '.level2', function () {
 			level = 2;
-			$('body').pagecontainer('change', '#start', { transition: 'pop' });
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
 		});
 		$(document).on(clickEventType, '.level3', function () {
 			level = 3;
-			$('body').pagecontainer('change', '#start', { transition: 'pop' });
-		});
-
-		$(document).on(clickEventType, '#start', function () {
 			$('body').pagecontainer('change', '#game', { transition: 'pop' });
 		});
 
@@ -94,8 +95,8 @@
 				//画面
 				$("#vw").html("　");
 				$("#vw1").html("　");
-				$("#game_main").prepend('<div id="vw2">おわり！</div>');
-				$("#count").html("　");
+				//$("#game_main").prepend('<div id="vw2">おわり！</div>');
+				//$("#count").html("　");
 
 				$('body').pagecontainer('change', '#well-done', { transition: 'pop' });
 				return;
@@ -235,17 +236,20 @@
 		}
 
 		function updateApp() {
-			var cache = window.applicationCache;
-			cache.addEventListener("updateready", function () {
-				if (confirm('アプリケーションの新しいバージョンが利用可能です。更新しますか？')) {
-					cache.swapCache();
-					location.reload();
-				}
-			});
-			if (navigator.onLine) {
-				cache.update();
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker
+					.register('/serviceworker.js')
+					.then(registration => {
+						// 登録成功
+						registration.onupdatefound = function() {
+							console.log('アップデートがあります！');
+							registration.update();
+						}
+					})
+					.catch(err => {
+						// 登録失敗
+				});
 			}
-		('updateready', onUpdateReady);
 		}
 
 		// 半角数字を全角数字にする場合
@@ -357,7 +361,7 @@
 			position: absolute !important;
 			top: auto !important;
 			width: 100%;
-		}  
+		}
 		div.game_main{
 			height: 100%;
 			padding: 0px 0px 0px 0px;
@@ -426,24 +430,6 @@
 		<div data-role="content" id="end" class="end" onclick="">
 			<div id="vw2">
 				おわり！
-			</div>
-		</div>
-		<div data-role="footer">
-			<div class="ui-btn-left">
-				<a href="#menu" class="ui-btn ui-icon-bars ui-btn-icon-left">ホーム</a>
-			</div>
-			<div class="ui-btn-right">
-			</div>
-			<h2></h2>
-
-		</div>
-	</div>
-
-	<!-- Start ポップアップページ -->
-	<div id="start" data-role="page">
-		<div data-role="content" id="start" class="start" onclick="">
-			<div id="vw2">
-				スタート！
 			</div>
 		</div>
 		<div data-role="footer">
