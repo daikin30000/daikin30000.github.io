@@ -1,7 +1,6 @@
 "use strict";
 
 registSW();
-//getPost();
 
 function registSW() {
 
@@ -16,23 +15,4 @@ function registSW() {
       });
     });
   }
-}
-
-function getPost() {
-/*
-  fetch('https://qiita.com/api/v2/items')
-    .then(response => {
-      return response.json();
-
-    }).then(res => {
-
-      const title = res[0].title;
-      const url = res[0].url;
-      const data = `<a href="${url}">${title}</a>`;
-      document.getElementById("newitem").innerHTML = data;
-
-    }).catch(function (error) {
-      console.log(error);
-    });
-*/
 }
