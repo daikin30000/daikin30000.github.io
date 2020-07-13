@@ -66,7 +66,7 @@
 			//console.log(d.prevPage[0].id);
 			if (d.toPage[0].id === "game") {
 				//ゲーム画面から離れる場合、問題や問題表示部を初期化する
-				//init();
+				dispose();
 			}
 		});
 		//ボタンを押したときの移動先
@@ -86,8 +86,9 @@
 		$(document).on(clickEventType, '#game_main', function () {
 
 			//最後の問題が終了したらクリア画面へ移動
-//			if ((count / 2 | 0) == a.length) {
-			if (count == 10) {
+			if ((count / 2 | 0) == a.length) {
+//			console.log("count: "+count);
+//			if (count == 10) {
 
 				//初期値
 				//変数
@@ -95,7 +96,7 @@
 				//画面
 				$("#vw").html("　");
 				$("#vw1").html("　");
-				//$("#game_main").prepend('<div id="vw2">おわり！</div>');
+				//$("#game_main").prepend('<div id="vw2">スタート</div>');
 				//$("#count").html("　");
 
 				$('body').pagecontainer('change', '#well-done', { transition: 'pop' });
@@ -129,7 +130,18 @@
 			$("#vw").html("");
 			$("#vw1").html("");
 			$("#count").html("　");
-			$("#game_main").prepend('<div id="vw2">スタート</div>');
+			$("#game_main").prepend('<div id="vw2">スタート！</div>');
+			count = 0;
+			a = new Array(0);
+			b = new Array(0);
+			c = new Array(0);
+		}
+
+		function dispose() {
+			$("#vw").html("");
+			$("#vw1").html("");
+			$("#count").html("　");
+			$('#vw2').remove();
 			count = 0;
 			a = new Array(0);
 			b = new Array(0);
@@ -401,7 +413,7 @@
 		</div>
 		<div data-role="footer">
 			<div class="ui-btn-right">
-				<a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">アプリ更新</a>
+				<!--<a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">アプリ更新</a>-->
 			</div>
 			<h2>　</h2>
 		</div>
