@@ -85,7 +85,8 @@
 		$(document).on(clickEventType, '#game_main', function () {
 
 			//最後の問題が終了したらクリア画面へ移動
-			if ((count / 2 | 0) == a.length) {
+//			if ((count / 2 | 0) == a.length) {
+			if (count == 10) {
 
 				//初期値
 				//変数
