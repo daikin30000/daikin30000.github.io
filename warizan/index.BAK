@@ -45,6 +45,12 @@
 			});
 		});
 	
+		$(() => {
+			document.addEventListener('touchmove', function(event){
+				event.preventDefault();
+			}, { passive: false });
+		}
+
 		var clickEventType = (( window.ontouchstart!==null ) ? 'click':'touchend');
 		//特定のページで初期化イベントを実行する
 		$(document).on("pagecontainerchange", function (e, d) {
@@ -378,6 +384,10 @@
 		div.game_main{
 			height: 100%;
 			padding: 0px 0px 0px 0px;
+		}
+		body {
+			overscroll-behavior-y: none;
+			overscroll-behavior-x: none;
 		}
 	</style>
 </head>
