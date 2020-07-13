@@ -401,7 +401,7 @@
 		</div>
 		<div data-role="footer">
 			<div class="ui-btn-right">
-				<!--<a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">アプリ更新</a>-->
+				<a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">アプリ更新</a>
 			</div>
 			<h2>　</h2>
 		</div>
