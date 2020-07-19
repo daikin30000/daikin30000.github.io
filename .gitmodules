@@ -1,0 +1,3 @@
+[submodule "CastReceiver"]
+	path = CastReceiver
+	url = https://github.com/googlecast/CastReceiver
