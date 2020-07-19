@@ -8,6 +8,6 @@
   <body>
     <h1>Happy casting!</h1>
     <p>You'll see this fancy picture :)</p>
-    <p><img src="https://dl.dropboxusercontent.com/u/4289117/cast/nekoru.jpg" /></p>
+    <p><img src="./nekoru.jpg" /></p>
   </body>
 </html>

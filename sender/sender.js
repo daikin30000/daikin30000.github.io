@@ -30,7 +30,7 @@ function onRequestSessionSuccess(e) {
   console.log(e);
   session = e;
 
-  var mediaInfo = new chrome.cast.media.MediaInfo("https://dl.dropboxusercontent.com/u/4289117/cast/nekoru.jpg", "image/jpeg");
+  var mediaInfo = new chrome.cast.media.MediaInfo("https://daikin30000.github.io/sender/nekoru.jpg", "image/jpeg");
   console.log(mediaInfo);
   var request = new chrome.cast.media.LoadRequest(mediaInfo);
   console.log(request);
