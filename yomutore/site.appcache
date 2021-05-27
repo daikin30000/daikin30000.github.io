@@ -7,6 +7,6 @@ CACHE:
 ./Scripts/jquery.mobile.structure-1.4.5.min.css
 ./Scripts/jquery-1.12.4.min.js
 ./Scripts/jquery.mobile-1.4.5.min.js
-./yomutore.ico
+./favicon.ico
 
 NETWORK:
