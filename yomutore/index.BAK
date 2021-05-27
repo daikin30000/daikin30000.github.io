@@ -250,6 +250,7 @@
 					}
 				});
 			});
+			console.log("キャッシュ削除完了");
 		}
 
 		// 半角数字を全角数字にする場合
@@ -329,8 +330,8 @@
 			text-align: center;
 		}
 
-		div.ui-block-a {
-			margin-right: 1px;
+		button {
+			margin-righ: 10px;
 		}
 
 		div#vw {
