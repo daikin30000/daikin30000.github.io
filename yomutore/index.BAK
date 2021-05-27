@@ -132,11 +132,8 @@
 			if ( level < 8 ) {
 				$("#vw2").css({ 'font-size' : '34vw' } );
 				$("#vw2").css({ 'letter-spacing' : '20px' } );
-			}else if ( level == 10 ) {
-				$("#vw2").css({ 'font-size' : '14vw' } );
-				$("#vw2").css({ 'letter-spacing' : '0px' } );
-			}else if ( level == 9 ) {
-				$("#vw2").css({ 'font-size' : '14vw' } );
+			}else if ( level > 8 ) {
+				$("#vw2").css({ 'font-size' : '13vw' } );
 				$("#vw2").css({ 'letter-spacing' : '0px' } );
 			} else {
 				$("#vw2").css({ 'font-size' : '15vw' } );
