@@ -4,7 +4,6 @@
 	<title>読むトレ</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<link rel="stylesheet" href="Scripts/bootstrap4.5.3/css/bootstrap.min.css">
 	<link href="Scripts/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
 	<link href="Scripts/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet" />
 	<script src="Scripts/jquery-1.12.4.min.js"></script>
@@ -133,11 +132,8 @@
 			if ( level < 8 ) {
 				$("#vw2").css({ 'font-size' : '34vw' } );
 				$("#vw2").css({ 'letter-spacing' : '20px' } );
-			}else if ( level == 10 ) {
-				$("#vw2").css({ 'font-size' : '14vw' } );
-				$("#vw2").css({ 'letter-spacing' : '0px' } );
-			}else if ( level == 9 ) {
-				$("#vw2").css({ 'font-size' : '14vw' } );
+			}else if ( level > 8 ) {
+				$("#vw2").css({ 'font-size' : '13vw' } );
 				$("#vw2").css({ 'letter-spacing' : '0px' } );
 			} else {
 				$("#vw2").css({ 'font-size' : '15vw' } );
@@ -396,37 +392,70 @@
 	<!-- メニューページ -->
 	<div id="menu" data-role="page">
 		<div data-role="content">
-		<div class="row">
-			ひらがな：単文字
-			<div class="col-sm-4">清音</div>
-			<div class="col-sm-4">濁音、半濁音</div>
-			<div class="col-sm-4">拗音</div>
-		</div>
-		<div class="row">
-			カタカナ：単文字
-			<div class="col-sm-4">清音</div>
-			<div class="col-sm-4">濁音、半濁音</div>
-			<div class="col-sm-4">拗音</div>
-		</div>
-		<div class="row">
-			ひらがな：清音
-			<div class="col-sm-6">２文字</div>
-			<div class="col-sm-6">３～６文字</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6">ひらがな：濁音、半濁音、拗音など</div>
-			<div class="col-sm-6">カタカナ単語</div>
-		</div>
-			<button class="level1">ひらがな：単文字 清音</button>
-			<button class="level2">ひらがな：単文字 濁音、半濁音</button>
-			<button class="level3">ひらがな：単文字 拗音</button>
-			<button class="level4">カタカナ：単文字 清音</button>
-			<button class="level5">カタカナ：単文字 濁音、半濁音</button>
-			<button class="level6">カタカナ：単文字 拗音</button>
-			<button class="level7">ひらがな：清音２文字</button>
-			<button class="level8">ひらがな：清音３～６文字</button>
-			<button class="level9">ひらがな：濁音、半濁音、拗音など</button>
-			<button class="level10">カタカナ単語</button>
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					ひらがな：単文字
+				</div>
+			</div>
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<button class="level1">清音</button>
+				</div>
+				<div class="ui-block-b">
+					<button class="level2">濁音、半濁音</button>
+				</div>
+				<div class="ui-block-c">
+					<button class="level3">拗音</button>
+				</div>
+			</div>
+
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					カタカナ：単文字
+				</div>
+			</div>
+			<div class="ui-grid-b">
+				<div class="ui-block-a">
+					<button class="level4">清音</button>
+				</div>
+				<div class="ui-block-b">
+					<button class="level5">濁音、半濁音</button>
+				</div>
+				<div class="ui-block-c">
+					<button class="level6">拗音</button>
+				</div>
+			</div>
+
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					ひらがな：清音
+				</div>
+			</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<button class="level7">２文字</button>
+				</div>
+				<div class="ui-block-b">
+					<button class="level8">３～６文字</button>
+				</div>
+			</div>
+
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					ひらがな
+				</div>
+				<div class="ui-block-b">
+					カタカナ
+				</div>
+			</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<button class="level9">濁音、半濁音、拗音など</button>
+				</div>
+				<div class="ui-block-b">
+					<button class="level10">単語</button>
+				</div>
+			</div>
 		</div>
 		<div data-role="footer">
 			<div class="ui-btn-right">
@@ -471,8 +500,5 @@
 
 		</div>
 	</div>
-
-	<script src="Scripts/bootstrap4.5.3/js/bootstrap.bundle.min.js"></script>
-	<script src="Scripts/bootstrap4.5.3/js/bootstrap.min.js"></script>
 </body>
 </html>
