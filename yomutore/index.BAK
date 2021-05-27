@@ -329,6 +329,10 @@
 			text-align: center;
 		}
 
+		div.ui-block-a {
+			margin-right: 1px;
+		}
+
 		div#vw {
 			/*
 			background-color: tomato;
