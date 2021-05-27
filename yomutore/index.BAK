@@ -332,8 +332,8 @@
 			/*
 			background-color: tomato;
 			font-family: "Courier New", Consolas, monospace;
-			*/
 			font-family: monospace;
+			*/
 			font-size: 17vw;
 			text-align: left;
 		}
@@ -342,8 +342,8 @@
 			/*
 			font-family: "Courier New", Consolas, monospace;
 			background-color:yellow;
-			*/
 			font-family: monospace;
+			*/
 			font-size: 17vw;
 			text-align: right;
 		}
@@ -351,8 +351,8 @@
 			/*
 			font-family: "Courier New", Consolas, monospace;
 			background-color:rgb(13, 114, 197);
-			*/
 			font-family: monospace;
+			*/
 			font-size: 17vw;
 			text-align: right;
 			vertical-align: middle;
@@ -461,7 +461,7 @@
 		</div>
 		<div data-role="footer">
 			<div class="ui-btn-right">
-				<!-- <a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">アプリ更新</a>-->
+				<a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">アプリ更新</a>
 			</div>
 			<h2>　</h2>
 		</div>
