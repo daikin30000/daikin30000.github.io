@@ -131,13 +131,8 @@
 			//$('#vw2').remove();
 			if ( level < 8 ) {
 				$("#vw2").css({ 'font-size' : '34vw' } );
-				$("#vw2").css({ 'letter-spacing' : '20px' } );
-			}else if ( level == 10 ) {
-				$("#vw2").css({ 'font-size' : '15vw' } );
-				$("#vw2").css({ 'letter-spacing' : '10px' } );
 			} else {
 				$("#vw2").css({ 'font-size' : '15vw' } );
-				$("#vw2").css({ 'letter-spacing' : '20px' } );
 			}
 
 			//問題の文字列を作成し表示
