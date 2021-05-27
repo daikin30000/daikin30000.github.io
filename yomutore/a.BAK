@@ -1,0 +1,45 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
+<style type="text/css">
+.wf-notosansjapanese { font-family: "Noto Sans JP"; }
+</style>
+-->
+<style type="text/css">
+@font-face {
+  font-family: 'MyFont';
+       url('./YOzRS_.otf') format("opentype");
+}
+body {
+  font-family: 'MyFont';
+}
+</style>
+</head>
+<body>
+<pre class="wf-notosansjapanese">
+あいうえお
+かきくけこ
+さしすせそ
+たちつてと
+なにぬねの
+はひふへほ
+まみむめも
+やゆよ
+らりるれろ
+わおん
+
+アイウエオ
+カキクケコ
+サシスセソ
+タチツテト
+ナニヌネノ
+ハヒフヘホ
+マミムメモ
+ヤユヨ
+ラリルレロ
+ワオン
+</pre>
+</body>
+</html>

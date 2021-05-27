@@ -137,7 +137,7 @@
 				$("#vw2").css({ 'letter-spacing' : '0px' } );
 			} else {
 				$("#vw2").css({ 'font-size' : '15vw' } );
-				$("#vw2").css({ 'letter-spacing' : '20px' } );
+				$("#vw2").css({ 'letter-spacing' : '10px' } );
 			}
 
 			//問題の文字列を作成し表示
