@@ -1,0 +1,446 @@
+﻿<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>読むトレ</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="Scripts/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+	<link href="Scripts/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet" />
+	<script src="Scripts/jquery-1.12.4.min.js"></script>
+	<script src="Scripts/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="apple-touch-icon" href="yomutore-icon-192-192.png" sizes="192x192">
+	<link rel="apple-touch-icon" href="yomutore-icon-512-512.png" sizes="512x512">
+	<link rel="apple-touch-icon-precomposed" href="yomutore.ico" />
+	<link rel="manifest" href="manifest.json">
+	<script src="./main.js"></script>
+	<script type="text/javascript">
+		//グローバル変数
+		var a = new Array(0);
+		//var b = new Array(0);
+		//var c = new Array(0);
+
+		//ゲーム画面でのクリック数
+		var count = 0;
+
+		//問題の種類(1～6)
+		var level = 0;
+		var levelStr = new Array("ひらがな：単文字", "カタカナ：単文字", "ひらがな：清音２文字", "ひらがな：清音３～６文字", "ひらがな：濁音、拗音など入り", "カタカナ単語");
+
+		$(function(){
+			var $isScrolling = 0 ;
+			var $timeoutId ;
+			
+			$(document).on( "scroll", function () {
+				$isScrolling = 1 ;
+	
+				// スクロールを停止して200ms後に終了とする
+				clearTimeout( $timeoutId );
+	
+				$timeoutId = setTimeout( function () {
+					$isScrolling = 0 ;
+				}, 200 );
+			});
+		});
+	
+		var clickEventType = (( window.ontouchstart!==null ) ? 'click':'touchend');
+		//特定のページで初期化イベントを実行する
+		$(document).on("pagecontainerchange", function (e, d) {
+			//alert("pagecontainerchange - ページ変更後 - ページロード/ページ遷移/リターンで発生");
+			//console.log(d.toPage[0].id);
+			if (d.toPage[0].id === "game") {
+				//ゲーム画面へ移動する場合、問題を作成する
+				init();
+				makeQuestion();
+			}
+			if (d.toPage[0].id === "well-done") {
+				//ゲーム画面へ移動する場合、問題を作成する
+				$("vw2").css({ 'color' : 'red' , 'font-size' : '17vw' } );
+				$("#well-done").prepend('<div id="vw2">おわり！</div>');
+			}
+		});
+		//特定のページで初期化イベントを実行する
+		$(document).on("pagecontainerbeforehide", function (e, d) {
+			//alert("pagecontainerbeforehide - 前ページの非表示前 - ページ遷移/リターンで発生");
+			//console.log(d.prevPage[0].id);
+			if (d.toPage[0].id === "game") {
+				//ゲーム画面から離れる場合、問題や問題表示部を初期化する
+				dispose();
+			}
+		});
+		//ボタンを押したときの移動先
+		$(document).on(clickEventType, '.level1', function () {
+			level = 1;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+		$(document).on(clickEventType, '.level2', function () {
+			level = 2;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+		$(document).on(clickEventType, '.level3', function () {
+			level = 3;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+		$(document).on(clickEventType, '.level4', function () {
+			level = 4;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+		$(document).on(clickEventType, '.level5', function () {
+			level = 5;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+		$(document).on(clickEventType, '.level6', function () {
+			level = 6;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+		$(document).on(clickEventType, '.level7', function () {
+			level = 7;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+		$(document).on(clickEventType, '.level8', function () {
+			level = 8;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+		$(document).on(clickEventType, '.level9', function () {
+			level = 9;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+		$(document).on(clickEventType, '.level10', function () {
+			level = 10;
+			$('body').pagecontainer('change', '#game', { transition: 'pop' });
+		});
+
+		$(document).on(clickEventType, '#game_main', function () {
+
+			//最後の問題が終了したらクリア画面へ移動
+			if (count == a.length) {
+//			console.log("count: "+count);
+//			if (count == 10) {
+
+				//初期値
+				//変数
+				count = 0;
+				//画面
+				//$("#vw").html("　");
+				//$("#vw1").html("　");
+				//$("#game_main").prepend('<div id="vw2">はじめ</div>');
+				//$("#count").html("　");
+
+				$('body').pagecontainer('change', '#well-done', { transition: 'pop' });
+				return;
+			}
+			//$('#vw2').remove();
+			if ( level < 8 ) {
+				$("#vw2").css({ 'font-size' : '34vw' } );
+			} else {
+				$("#vw2").css({ 'font-size' : '15vw' } );
+			}
+
+			//問題の文字列を作成し表示
+			var ret = "";
+			var aa = toFullWidth(""+a[count]);
+			ret = aa;
+			$("#vw2").html(ret);
+
+			//フッターに「現在の問題数 / 総問題数」を表示
+			var retCount = (count + 1) + " / " + a.length;
+//			var retCount = (count + 1) + " / 10";
+			$("#count").html(retCount);
+
+			count++;
+		});
+
+		function init() {
+			//$("#vw").html("");
+			//$("#vw1").html("");
+			$("#count").html("　");
+			$("#game_main").prepend('<div id="vw2">はじめ！</div>');
+			count = 0;
+			a = new Array(0);
+			//b = new Array(0);
+			//c = new Array(0);
+		}
+
+		function dispose() {
+			$("#vw").html("");
+			$("#vw1").html("");
+			$("#count").html("　");
+			$('#vw2').remove();
+			count = 0;
+			a = new Array(0);
+			//b = new Array(0);
+			//c = new Array(0);
+		}
+
+		function makeQuestion() {
+			a = new Array(0);
+			//b = new Array(0);
+			//c = new Array(0);
+			//入力された値を取得
+			//問題を配列に格納
+			let tmp = "";
+			if (level == 1) {
+				tmp = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
+				a = splitByLength(tmp, 1);
+			} else if (level == 2) {
+				tmp = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ";
+				a = splitByLength(tmp, 1);
+			} else if (level == 3) {
+				tmp = "きゃきゅきょしゃしゅしょちゃちゅちょにゃにゅにょひゃひゅひょみゃみゅみょりゃりゅりょふぁふぃふぇふぉてぃでぃぎゃぎゅぎょじゃじゅじょびゃびゅびょ";
+				a = splitByLength(tmp, 2);
+			} else if (level == 4) {
+				tmp = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+				a = splitByLength(tmp, 1);
+			} else if (level == 5) {
+				tmp = "ガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ";
+				a = splitByLength(tmp, 1);
+			} else if (level == 6) {
+				tmp = "キャキュキョシャシュショチャチュチョニャニュニョヒャヒュヒョミャミュミョリャリュリョファフィフェフォティディギャギュギョジャジュジョビャビュビョ";
+				a = splitByLength(tmp, 2);
+			} else if (level == 7) {
+				tmp = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
+				a = splitByLength(tmp, 2);
+			} else if (level == 8) {
+				tmp = "あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん";
+				a = splitByLength(tmp, 6);
+			} else if (level == 9) {
+				tmp = "がぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽ";
+				a = splitByLength(tmp, 3);
+			} else {
+				tmp = "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+				a = splitByLength(tmp, 6);
+			}
+			//ランダムに並び替え
+			randomQuestion();
+		}
+
+		function randomQuestion() {
+			for (i = 0; i < a.length; i++) {
+				var j = Math.floor(Math.random() * i);
+				var tmp_a = a[i];
+				//var tmp_b = b[i];
+				//var tmp_c = c[i];
+				a[i] = a[j];
+				//b[i] = b[j];
+				//c[i] = c[j];
+				a[j] = tmp_a;
+				//b[j] = tmp_b;
+				//c[j] = tmp_c;
+			}
+		}
+
+		function updateApp() {
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker
+					.register('./sw.js')
+					.then(registration => {
+						// 登録成功
+						registration.onupdatefound = function() {
+							console.log('アップデートがあります！');
+							registration.update();
+						}
+					})
+					.catch(err => {
+						// 登録失敗
+				});
+			}
+		}
+
+		// 半角数字を全角数字にする場合
+		function toFullWidth(value) {
+			return value.replace(/[0-9]/g, s => {
+				return String.fromCharCode(s.charCodeAt(0) + 0xfee0)
+			})
+		}
+
+		function splitByLength(str, length) {
+			var resultArr = [];
+			if (!str || !length || length < 1) {
+				return resultArr;
+			}
+			var index = 0;
+			var start = index;
+			var end = start + length;
+			while (start < str.length) {
+				resultArr[index] = str.substring(start, end);
+				index++;
+				start = end;
+				end = start + length;
+			}
+			return resultArr;
+		}
+	</script>
+
+	<style type="text/css">
+		* {
+		  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		  -webkit-touch-callout: none;
+		  -webkit-user-select: none;
+		}
+
+		label img {
+			margin-right: 10px;
+		}
+
+		#pic-frame {
+			width: 280px;
+			height: 280px;
+			position: relative;
+			left: 0px;
+			top: 0px;
+		}
+
+		#pic-guide {
+			position: absolute;
+			background-repeat: no-repeat;
+			width: 100%;
+			height: 100%;
+		}
+
+		.tile {
+			border: 1px solid;
+			position: absolute;
+		}
+
+		#well-done {
+			position: relative;
+		}
+
+		div.button-table {
+			text-align: center;
+		}
+
+		div.checkgroup {
+			text-align: center;
+		}
+
+		div.radiogroup {
+			text-align: center;
+		}
+
+		div.ui-controlgroup-label {
+			text-align: center;
+		}
+
+		div#vw {
+			/*
+			background-color: tomato;
+			font-family: "Courier New", Consolas, monospace;
+			*/
+			font-family: monospace;
+			font-size: 17vw;
+			text-align: left;
+		}
+
+		div#vw1 {
+			/*
+			font-family: "Courier New", Consolas, monospace;
+			background-color:yellow;
+			*/
+			font-family: monospace;
+			font-size: 17vw;
+			text-align: right;
+		}
+		div#vw2 {
+			/*
+			font-family: "Courier New", Consolas, monospace;
+			background-color:rgb(13, 114, 197);
+			*/
+			font-family: monospace;
+			font-size: 17vw;
+			text-align: right;
+			vertical-align: middle;
+			height:85%;
+			text-align: center;
+			display: -webkit-flex;
+			display: flex;
+			 -webkit-align-items: center; /* 縦方向中央揃え（Safari用） */
+			 align-items: center; /* 縦方向中央揃え */
+			 -webkit-justify-content: center; /* 横方向中央揃え（Safari用） */
+			 justify-content: center; /* 横方向中央揃え */
+			letter-spacing: 20px;
+		}
+
+		[data-role=page] {
+			height: 100% !important;
+			position: relative !important;
+			background-color: #005000;
+			color:white;
+		}
+
+		[data-role=footer] {
+			bottom: 0;
+			position: absolute !important;
+			top: auto !important;
+			width: 100%;
+		}
+		div.game_main{
+			height: 100%;
+			padding: 0px 0px 0px 0px;
+		}
+		body {
+			overscroll-behavior-y: none;
+			overscroll-behavior-x: none;
+		}
+	</style>
+</head>
+<body>
+	<!-- メニューページ -->
+	<div id="menu" data-role="page">
+		<div data-role="content">
+			<button class="level1">ひらがな：単文字 清音</button>
+			<button class="level2">ひらがな：単文字 濁音、半濁音</button>
+			<button class="level3">ひらがな：単文字 拗音</button>
+			<button class="level4">カタカナ：単文字 清音</button>
+			<button class="level5">カタカナ：単文字 濁音、半濁音</button>
+			<button class="level6">カタカナ：単文字 拗音</button>
+			<button class="level7">ひらがな：清音２文字</button>
+			<button class="level8">ひらがな：清音３～６文字</button>
+			<button class="level9">ひらがな：濁音、半濁音、拗音など</button>
+			<button class="level10">カタカナ単語</button>
+		</div>
+		<div data-role="footer">
+			<div class="ui-btn-right">
+				<a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">アプリ更新</a>
+			</div>
+			<h2>　</h2>
+		</div>
+	</div>
+
+	<!-- れんしゅうページ -->
+	<div id="game" data-role="page">
+		<div data-role="content" id="game_main" class="game_main" onclick="">
+			<div id="vw"></div>
+			<div id="vw1"></div>
+		</div>
+		<div data-role="footer">
+			<div class="ui-btn-left">
+				<a href="#menu" class="ui-btn ui-icon-bars ui-btn-icon-left">ホーム</a>
+			</div>
+			<div class="ui-btn-right">
+			</div>
+			<h2 id="count">
+				0 / 0
+			</h2>
+		</div>
+	</div>
+
+	<!-- Well done ポップアップページ -->
+	<div id="well-done" data-role="page">
+		<div data-role="content" id="end" class="end" onclick="">
+			<div id="vw2">
+				おわり！
+			</div>
+		</div>
+		<div data-role="footer">
+			<div class="ui-btn-left">
+				<a href="#menu" class="ui-btn ui-icon-bars ui-btn-icon-left">ホーム</a>
+			</div>
+			<div class="ui-btn-right">
+			</div>
+			<h2></h2>
+
+		</div>
+	</div>
+
+</body>
+</html>
