@@ -4,9 +4,10 @@
 	<title>読むトレ</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="stylesheet" href="Scripts/bootstrap4.5.3/css/bootstrap.min.css">
 	<link href="Scripts/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
 	<link href="Scripts/jquery.mobile.structure-1.4.5.min.css" rel="stylesheet" />
-	<script src="Scripts/jquery-1.12.4.min.js"></script>
+	<script src="Scripts/jquery-3.6.0.min.js"></script>
 	<script src="Scripts/jquery.mobile-1.4.5.min.js"></script>
 	<link rel="apple-touch-icon" href="yomutore-icon-192-192.png" sizes="192x192">
 	<link rel="apple-touch-icon" href="yomutore-icon-512-512.png" sizes="512x512">
@@ -133,6 +134,9 @@
 				$("#vw2").css({ 'font-size' : '34vw' } );
 				$("#vw2").css({ 'letter-spacing' : '20px' } );
 			}else if ( level == 10 ) {
+				$("#vw2").css({ 'font-size' : '14vw' } );
+				$("#vw2").css({ 'letter-spacing' : '0px' } );
+			}else if ( level == 9 ) {
 				$("#vw2").css({ 'font-size' : '14vw' } );
 				$("#vw2").css({ 'letter-spacing' : '0px' } );
 			} else {
