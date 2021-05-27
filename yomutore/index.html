@@ -10,8 +10,9 @@
 	<script src="Scripts/jquery.mobile-1.4.5.min.js"></script>
 	<link rel="apple-touch-icon" href="yomutore-icon-192-192.png" sizes="192x192">
 	<link rel="apple-touch-icon" href="yomutore-icon-512-512.png" sizes="512x512">
-	<link rel="apple-touch-icon-precomposed" href="favicon.ico" />
+	<link rel="apple-touch-icon-precomposed" href="yomutore.ico" />
 	<link rel="manifest" href="manifest.json">
+	<script src="./main.js"></script>
 	<script type="text/javascript">
 		//グローバル変数
 		var a = new Array(0);
@@ -230,7 +231,7 @@
 		function updateApp() {
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker
-					.register('./sw.js')
+					.register('./service-worker.js')
 					.then(registration => {
 						// 登録成功
 						registration.onupdatefound = function() {
