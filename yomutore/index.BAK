@@ -284,6 +284,22 @@
 		  -webkit-touch-callout: none;
 		  -webkit-user-select: none;
 		}
+
+		@font-face {
+		    font-family: minmoji;
+		    src: url('https://minmoji.ucda.jp/fontseot/https%3A__daikin30000.github.io_yomutore_');
+		    src: local('minmoji'),
+		        url('https://minmoji.ucda.jp/fontswoff/https%3A__daikin30000.github.io_yomutore_') format('woff'),
+		        url('https://minmoji.ucda.jp/fonts/https%3A__daikin30000.github.io_yomutore_') format('opentype');
+		}
+
+		body {
+		    font-family: minmoji;
+		}
+		/*
+		body { font-family: "Noto Sans JP"; }
+		*/
+
 		label img {
 			margin-right: 10px;
 		}
@@ -393,21 +409,6 @@
 			overscroll-behavior-y: none;
 			overscroll-behavior-x: none;
 		}
-@font-face {
-    font-family: minmoji;
-    src: url('https://minmoji.ucda.jp/fontseot/https%3A__daikin30000.github.io_yomutore_');
-    src: local('minmoji'),
-        url('https://minmoji.ucda.jp/fontswoff/https%3A__daikin30000.github.io_yomutore_') format('woff'),
-        url('https://minmoji.ucda.jp/fonts/https%3A__daikin30000.github.io_yomutore_') format('opentype');
-}
-
-body {
-    font-family: minmoji;
-}
-/*
-body { font-family: "Noto Sans JP"; }
-*/
-
 	</style>
 </head>
 <body>
