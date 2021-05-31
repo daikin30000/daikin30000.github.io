@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 	<title>読むトレ</title>
+	<meta name="theme-color" content="#005000"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP" rel="stylesheet">
@@ -25,6 +26,8 @@
   gtag('config', 'G-NPHCPQJQ7Z');
 </script>
 	<script type="text/javascript">
+		//バージョン
+		var version = "0.9";
 		//グローバル変数
 		var a = new Array(0);
 		//var b = new Array(0);
