@@ -493,6 +493,20 @@
 					<button class="level10">⑩ 単語</button>
 				</div>
 			</div>
+
+			<div class="ui-grid-solo">
+				<div class="ui-block-a">
+					漢字
+				</div>
+			</div>
+			<div class="ui-grid-a">
+				<div class="ui-block-a">
+					<button class="level11">⑪ ふりがな あり</button>
+				</div>
+				<div class="ui-block-b">
+					<button class="level12">⑫ ふりがな なし</button>
+				</div>
+			</div>
 <!--		
 		<script type="text/javascript" src="https://minmoji.ucda.jp/sealjs/https%3A__daikin30000.github.io_yomutore_" charset="UTF-8"></script>
 		<div>あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをん</div>
@@ -503,7 +517,7 @@
 			<div class="ui-btn-right">
 				<a onclick="updateApp();" class="ui-btn ui-icon-refresh ui-btn-icon-left">キャッシュ削除</a>
 			</div>
-			<h2 id="count">　</h2>
+			<h2>　</h2>
 		</div>
 	</div>
 
