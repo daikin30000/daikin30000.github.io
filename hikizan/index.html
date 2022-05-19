@@ -102,7 +102,7 @@
 				count = 0;
 				//画面
 				$("#vw").html("　");
-				$("#vw1").html("　");
+				//$("#vw1").html("　");
 
 				$('body').pagecontainer('change', '#well-done', { transition: 'pop' });
 				return;
@@ -116,13 +116,12 @@
 			var bb = toFullWidth(""+b[count / 2 | 0]);
 			var cc = toFullWidth(""+c[count / 2 | 0]);
 			if (count % 2 == 0) {
-				ret = cc + "<BR>－" + bb + "=";
+				ret = cc + "<BR>－" + bb;
 			} else {
-				ret = cc + "<BR>－" + bb + "=";
-				ret1 = aa;
+				ret = cc + "<BR>－" + bb + "<BR>" + aa;
 			}
 			$("#vw").html(ret);
-			$("#vw1").html(ret1);
+			////$("#vw1").html(ret1);
 
 			//フッターに「現在の問題数 / 総問題数」を表示
 			var retCount = ((count / 2 | 0) + 1) + " / " + a.length;
@@ -133,7 +132,7 @@
 
 		function init() {
 			$("#vw").html("");
-			$("#vw1").html("");
+			//$("#vw1").html("");
 			$("#count").html("　");
 			$("#game_main").prepend('<div id="vw2">スタート！</div>');
 			count = 0;
@@ -144,7 +143,7 @@
 
 		function dispose() {
 			$("#vw").html("");
-			$("#vw1").html("");
+			//$("#vw1").html("");
 			$("#count").html("　");
 			$('#vw2').remove();
 			count = 0;
@@ -160,77 +159,19 @@
 			//入力された値を取得
 			//問題を配列に格納
 			if (level == 1) {
-				//あまりあり と あまりなし の混合
-				//混合割合は選択
-				dan = Number($('input[name=dan]:checked').val());
-				//console.log(dan);
-				//例 81問の10%≒8なので指定された数字に8をかける
-				var modvalue = dan * 8;
-				//あまりなしの問題
-				level = 3;
-				makeQuestion();
-				//あまりありの割合以外を削除
-				//console.log(81-modvalue-1,modvalue);
-				a.splice(81-modvalue-1,modvalue);
-				b.splice(81-modvalue-1,modvalue);
-				c.splice(81-modvalue-1,modvalue);
-				//あまりありの問題
-				level = 2;
-				makeQuestion();
-				//81問以降は削除
-				a.splice(81,81);
-				b.splice(81,81);
-				c.splice(81,81);
-				level = 1;
-				//ランダムに並べ替え
-				randomQuestion();
 			} else if (level == 2) {
-				//あまりあり
-				//2の段4問、3の段8問、4の段9問、5の段10問、
-				//6の段11問、7の段12問、8の段13問、9の段14問
-				//合計81問のあまりのある割り算を自動生成
-				var maxvalue=0;
-				var myNum = 0;
-				for (i = 2; i <= 9; i++) {
-					maxvalue = i * 10 -1;
-					for (j = 1; j <= 14; j++) {
-						do{
-							myNum = Math.floor(Math.random()*(maxvalue-i))+i;
-						}while(myNum % i == 0);
-						a.push((myNum / i | 0) + "あまり" + (myNum % i));
-						b.push(i);
-						c.push(myNum);
-
-						if (i == 2 && j == 4) break;
-						if (i == 3 && j == 8) break;
-						if (i == 4 && j == 9) break;
-						if (i == 5 && j == 10) break;
-						if (i == 6 && j == 11) break;
-						if (i == 7 && j == 12) break;
-						if (i == 8 && j == 13) break;
-						if (i == 9 && j == 14) break;
-					}
-				}
-				//ランダムに並び替え
-				randomQuestion();
-				/*
-				for (i = 0; i < a.length; i++) {
-					//c[i] = a[i] * b[i];
-					console.log(c[i] + "÷" + b[i] + "=" + a[i]);
-				}
-				*/
 			} else if (level == 3) {
 				//あまりなし
 				//１～９をa,bそれぞれに入れてランダムにする
-				for (i = 0; i < 9; i++) {
-					for (j = 0; j < 9; j++) {
-						a.push(i + 1);
-						b.push(j + 1);
+				for (i = 11; i < 19; i++) {
+					for (j = 9; j > 1; j--) {
+						a.push(i);
+						b.push(j);
 					}
 				}
 				randomQuestion();
 				for (i = 0; i < a.length; i++) {
-					c[i] = a[i] * b[i];
+					c[i] = a[i] - b[i];
 				}
 			}
 			//console.log(a);
@@ -396,10 +337,12 @@
 	<div id="menu" data-role="page">
 		<div data-role="content">
 			<button class="level3">くりさがり なし で れんしゅう</button>
+			<!--
 			<button class="level2">くりさがり あり で れんしゅう</button>
 			<button class="level1">ごちゃまぜ で れんしゅう</button>
 			<input type="hidden" name="dan" id="dan5" value="5" checked>
-			</div>
+			-->
+		</div>
 		</div>
 		<div data-role="footer">
 			<div class="ui-btn-right">
@@ -413,7 +356,6 @@
 	<div id="game" data-role="page">
 		<div data-role="content" id="game_main" class="game_main" onclick="">
 			<div id="vw"></div>
-			<div id="vw1"></div>
 		</div>
 		<div data-role="footer">
 			<div class="ui-btn-left">
