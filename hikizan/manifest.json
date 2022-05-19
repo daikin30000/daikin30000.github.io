@@ -1,14 +1,14 @@
 {
-  "short_name": "割り算フラッシュカード",
-  "name": "割り算フラッシュカード",
+  "short_name": "引き算フラッシュカード",
+  "name": "引き算フラッシュカード",
   "icons": [
     {
-      "src": "warizan-icon-192-192.png",
+      "src": "hikizan-icon-192-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "warizan-icon-512-512.png",
+      "src": "hikizan-icon-512-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
