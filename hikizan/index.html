@@ -116,9 +116,9 @@
 		var bb = toFullWidth(""+b[count / 2 | 0]);
 		var cc = toFullWidth(""+c[count / 2 | 0]);
 		if (count % 2 == 0) {
-			ret = cc + "<BR>－　" + bb;
+			ret = aa + "<BR>－　" + bb;
 		} else {
-			ret = cc + "<BR>－　" + bb + "<BR>　　" + aa;
+			ret = aa + "<BR>－　" + bb + "<BR>　　" + cc;
 		}
 		$("#vw").html(ret);
 		////$("#vw1").html(ret1);
@@ -278,7 +278,7 @@
 		font-family: monospace;
 		font-size: 17vw;
 		text-align: left;
-		line-height: 1.75;
+		line-height: 1;
 	}
 
 	div#vw1 {
