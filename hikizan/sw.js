@@ -10,9 +10,9 @@ const urlsToCache = [
     'Scripts/jquery.mobile.structure-1.4.5.min.css',
     'Scripts/jquery-1.12.4.min.js',
     'Scripts/jquery.mobile-1.4.5.min.js',
-    './warizan.ico',
-    'warizan-icon-192-192.png',
-    'warizan-icon-512-512.png'
+    './hikizan.ico',
+    'hikizan-icon-192-192.png',
+    'hikizan-icon-512-512.png'
   ];
 
 // Service Worker へファイルをインストール
