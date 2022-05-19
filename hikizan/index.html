@@ -116,9 +116,9 @@
 		var bb = toFullWidth(""+b[count / 2 | 0]);
 		var cc = toFullWidth(""+c[count / 2 | 0]);
 		if (count % 2 == 0) {
-			ret = "　" + aa + "<BR>－　" + bb;
+			ret = "　" + aa + "<BR><u>－　" + bb + "</u>";
 		} else {
-			ret = "　" + aa + "<BR>－　" + bb + "<BR>　　" + cc;
+			ret = "　" + aa + "<BR><u>－　" + bb + "</u><BR>　　" + cc;
 		}
 		$("#vw").html(ret);
 		////$("#vw1").html(ret1);
