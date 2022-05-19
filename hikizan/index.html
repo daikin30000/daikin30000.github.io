@@ -165,8 +165,9 @@
 				//１～９をa,bそれぞれに入れてランダムにする
 				for (i = 11; i < 19; i++) {
 					for (j = 9; j > 1; j--) {
-						a.push(i);
-						b.push(j);
+						if( (i/1) % 10 < j ){ 
+							a.push(i);
+							b.push(j);
 					}
 				}
 				randomQuestion();
