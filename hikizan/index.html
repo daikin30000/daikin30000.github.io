@@ -153,9 +153,6 @@
 	}
 
 	function makeQuestion() {
-		//a = new Array(0);
-		//b = new Array(0);
-		//c = new Array(0);
 		//入力された値を取得
 		//問題を配列に格納
 		if (level == 1) {
@@ -165,7 +162,7 @@
 			//１～９をa,bそれぞれに入れてランダムにする
 			for (i = 11; i < 19; i++) {
 				for (j = 9; j > 1; j--) {
-					if( (i/1) % 10 < j ) {
+					if ( ((i/1) % 10) < j ) {
 						a.push(i);
 						b.push(j);
 					}
