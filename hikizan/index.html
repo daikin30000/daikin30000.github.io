@@ -116,7 +116,7 @@
 		var bb = toFullWidth(""+b[count / 2 | 0]);
 		var cc = toFullWidth(""+c[count / 2 | 0]);
 		if (count % 2 == 0) {
-			ret = "　" + aa + "<BR><u>－　" + bb + "</u>";
+			ret = "　" + aa + "<BR><u>－　" + bb + "</u><BR>　　";
 		} else {
 			ret = "　" + aa + "<BR><u>－　" + bb + "</u><BR>　　" + cc;
 		}
@@ -280,6 +280,8 @@
 		text-align: center;
 		line-height: 1;
 		display: flex;
+  		align-items: center;
+		justify-content: center;
 	}
 
 	div#vw1 {
