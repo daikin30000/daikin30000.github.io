@@ -1,0 +1,20 @@
+{
+  "short_name": "割り算フラッシュカード",
+  "name": "割り算フラッシュカード",
+  "icons": [
+    {
+      "src": "warizan-icon-192-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "warizan-icon-512-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#005000"
+}
