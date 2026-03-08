@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>もじよむ れんしゅう</title>
+    <link rel="manifest" href="./manifest.json" crossorigin="use-credentials">
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').then(() => console.log('SW registered'));
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            margin: 0; padding: 0;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh;
+            background-color: #2b5d41; 
+            background-image: radial-gradient(circle, #34704f 0%, #2b5d41 100%);
+            font-family: "BIZ UDPGothic", "Hiragino Kaku Gothic ProN", "Meiryo", sans-serif;
+            color: #ffffff;
+            cursor: pointer;
+            user-select: none;
+            overflow: hidden;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        #menu-screen {
+            display: flex; flex-direction: column; align-items: center; gap: 15px;
+            z-index: 10; width: 90%; max-width: 900px; padding-bottom: 80px;
+        }
+
+        .app-title {
+            font-size: 2.4rem; font-weight: bold; text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+            margin-bottom: 10px; text-align: center; line-height: 1.2;
+            display: flex; flex-wrap: wrap; justify-content: center;
+        }
+        .app-title span { display: inline-block; white-space: pre; }
+
+        .menu-row { display: flex; justify-content: center; gap: 10px; width: 100%; }
+
+        .menu-item {
+            background: rgba(255, 255, 255, 0.1); border: 2px solid #ffffff; padding: 10px 5px;
+            font-size: 1rem; border-radius: 12px; transition: all 0.2s; text-align: center;
+            display: flex; justify-content: center; align-items: center; flex: 1;
+            min-height: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #display-screen { display: none; width: 100%; height: 100%; justify-content: center; align-items: center; }
+        #display-text { font-weight: bold; text-align: center; white-space: nowrap; line-height: 1; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+
+        .bottom-btn {
+            position: absolute; background: rgba(255, 255, 255, 0.2); border: 1px solid #fff;
+            color: #fff; padding: 10px 20px; border-radius: 30px; font-size: 1rem;
+            cursor: pointer; z-index: 20; text-decoration: none; display: flex; align-items: center;
+        }
+
+        #switch-button { left: 20px; bottom: 20px; }
+        #home-button { right: 20px; bottom: 20px; display: none; }
+
+        @media (max-width: 480px) {
+            .app-title { font-size: 2rem; }
+            .menu-item { font-size: 0.85rem; padding: 8px 2px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="menu-screen">
+        <div class="app-title">　<span>もじよむ</span>　<span>れんしゅう</span></div>
+        <div class="menu-row">
+            <div class="menu-item" data-list="list01.txt">ひらがな １文字 清音</div>
+            <div class="menu-item" data-list="list02.txt">ひらがな 濁音・半濁音</div>
+            <div class="menu-item" data-list="list03.txt">ひらがな 拗音</div>
+        </div>
+        <div class="menu-row">
+            <div class="menu-item" data-list="list04.txt">カタカナ １文字 清音</div>
+            <div class="menu-item" data-list="list05.txt">カタカナ 濁音・半濁音</div>
+            <div class="menu-item" data-list="list06.txt">カタカナ 拗音</div>
+        </div>
+        <div class="menu-row">
+            <div class="menu-item" data-list="list07.txt">ひらがな ２文字</div>
+            <div class="menu-item" data-list="list08.txt">ひらがな ３～６文字</div>
+        </div>
+        <div class="menu-row">
+            <div class="menu-item" data-list="list09.txt">ひらがな 濁・拗音</div>
+            <div class="menu-item" data-list="list10.txt">カタカナ 単語</div>
+        </div>
+    </div>
+
+    <div id="display-screen"><div id="display-text">はじめ！</div></div>
+
+    <a href="index2.html" id="switch-button" class="bottom-btn">かんじれんしゅうへ</a>
+    <div id="home-button" class="bottom-btn">はじめにもどる</div>
+
+    <script>
+        $(document).ready(function() {
+            let originalList = []; let remainingList = []; let currentListFile = "";
+
+            function maximizeFontSize() {
+                const $el = $('#display-text');
+                const maxWidth = $(window).width() * 0.92;
+                const maxHeight = $(window).height() * 0.85;
+                const originalText = $el.text();
+                const isTargetList = /list0[8-9]|list10/.test(currentListFile);
+                if (isTargetList) $el.text("ああああああああ");
+
+                let fontSize = 10;
+                $el.css('font-size', fontSize + 'px');
+                while ($el.width() < maxWidth && $el.height() < maxHeight && fontSize < 1000) {
+                    fontSize += 10; $el.css('font-size', fontSize + 'px');
+                }
+                while (($el.width() > maxWidth || $el.height() > maxHeight) && fontSize > 10) {
+                    fontSize -= 2; $el.css('font-size', fontSize + 'px');
+                }
+                if (isTargetList) $el.text(originalText);
+            }
+
+            $('.menu-item').on('click', function(e) {
+                e.stopPropagation();
+                currentListFile = $(this).data('list');
+                $.get(currentListFile, function(data) {
+                    originalList = data.split(/\r?\n/).filter(Boolean);
+                    remainingList = [];
+                    $('#menu-screen, #switch-button').hide();
+                    $('#display-screen').css('display', 'flex');
+                    $('#home-button').show();
+                    $('#display-text').text("はじめ！");
+                    maximizeFontSize();
+                });
+            });
+
+            $('body').on('click', function() {
+                if ($('#display-screen').is(':visible') && originalList.length > 0) {
+                    if (remainingList.length === 0) {
+                        remainingList = [...originalList];
+                        for(let i=remainingList.length-1; i>0; i--){
+                            let r = Math.floor(Math.random()*(i+1));
+                            [remainingList[i], remainingList[r]] = [remainingList[r], remainingList[i]];
+                        }
+                    }
+                    $('#display-text').text(remainingList.pop());
+                    maximizeFontSize();
+                }
+            });
+
+            $('#home-button').on('click', function(e) {
+                e.stopPropagation();
+                $('#display-screen, #home-button').hide();
+                $('#menu-screen, #switch-button').show();
+            });
+
+            $(window).on('resize', function() { if ($('#display-screen').is(':visible')) maximizeFontSize(); });
+        });
+    </script>
+</body>
+</html>

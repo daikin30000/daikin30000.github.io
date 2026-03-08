@@ -1,0 +1,38 @@
+{
+  "name": "もじ・かんじ れんしゅう",
+  "short_name": "もじれん",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#2b5d41",
+  "theme_color": "#2b5d41",
+  "icons": [
+    {
+      "src": "icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-mobile.png",
+      "sizes": "714x1298",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "漢字練習の画面（スマホ）"
+    },
+    {
+      "src": "screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "漢字練習の画面（パソコン）"
+    }
+  ]
+}
