@@ -68,6 +68,8 @@ JQuery			1.12.4
 
 JQueryMobile	1.4.5
 
+（よむれんはjQuery3.7.1を使用しています）
+
 # アイコン作成に利用したサイト
 
 [フリーフォントで簡単ロゴ作成](http://lightbox.on.coocan.jp/html/fontImage.php)
