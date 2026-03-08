@@ -15,7 +15,7 @@
 
 「混合」の場合、あまりのある答えの割合を選択できます。
 
-# [読むトレ](https://daikin30000.github.io/yomutore/)
+# [よむれん](https://daikin30000.github.io/yomi/)
 
 文字の読み方の練習アプリです。
 
