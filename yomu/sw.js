@@ -1,4 +1,4 @@
-const CACHE_NAME = 'moji-kanji-v1.02';
+const CACHE_NAME = 'moji-kanji-v1.03';
 const urlsToCache = [
   'index.html',
   'index2.html',
@@ -22,4 +22,5 @@ self.addEventListener('fetch', (event) => {
       return response || fetch(event.request);
     })
   );
+
 });
