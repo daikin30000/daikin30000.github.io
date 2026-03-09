@@ -1,5 +1,5 @@
 {
-  "name": "もじ・かんじ れんしゅう",
+  "name": "もじよむ れんしゅう",
   "short_name": "もじれん",
   "start_url": "./index.html",
   "display": "standalone",
@@ -25,14 +25,15 @@
       "sizes": "714x1298",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "漢字練習の画面（スマホ）"
+      "label": "もじよむ れんしゅうの画面（スマホ）"
     },
     {
       "src": "screenshot-desktop.png",
       "sizes": "1280x720",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "漢字練習の画面（パソコン）"
+      "label": "もじよむ れんしゅうの画面（パソコン）"
     }
   ]
+
 }
